@@ -1,5 +1,0 @@
-email_relayhost_pairs:
-- email: Todd.Gordon@example.online
-  relayhost: '[kumo.example.online]:587'
-- email: Donald.Carr@example.online
-  relayhost: '[kumo.example.online]:587'
