@@ -1,0 +1,35 @@
+---
+- name: Create sender relayhost entries
+  hosts: all
+  vars_files:
+    - '{{ relayhost }}'
+
+  tasks:
+    - name: Ensure the script is present
+      copy:
+        src: /root/hitesh/relay/create_sender_relayhost_SQL.sh
+        dest: /root/create_sender_relayhost_SQL.sh
+        mode: '0755'
+
+    - name: Generate and execute SQL for sender relayhost
+      shell: |
+        /root/create_sender_relayhost_SQL.sh "{{ item.email }}" "{{ item.relayhost }}" >> /root/insert_sender_relayhosts.sql
+      loop: "{{ email_relayhost_pairs }}"
+      loop_control:
+        label: "{{ item.email }}"
+      register: sql_output
+      ignore_errors: yes
+
+    - name: Execute the generated SQL script
+      mysql_db:
+        name: vmail
+        state: import
+        target: /root/insert_sender_relayhosts.sql
+      when: sql_output is defined and sql_output is not failed
+
+    - name: Debug output
+      debug:
+        var: sql_output.results
+
+
+

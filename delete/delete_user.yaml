@@ -1,0 +1,13 @@
+---
+- name: Delete users from MySQL on remote host
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure the script is present
+      copy:
+        src: /root/hitesh/KumoMTA/flatfeeloans.com/delete_users.sql
+        dest: /root/delete_users.sql
+        mode: '0644'
+
+    - name: Execute the generated SQL script without MySQL login
+      shell: mysql vmail < /root/delete_users.sql

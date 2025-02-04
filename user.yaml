@@ -1,0 +1,7 @@
+domains:
+  - name: priyansh.site
+    users:
+      - { username: Todd.Gordon, password: "HuAGTfIkGzt*Jkr7i4^AX5Z", display_name: Todd Gordon }
+      - { username: Donald.Carr, password: "HuAGTfIkGzt*Jkr7i4^AX5Z", display_name: Donald Carr }
+      - { username: Zachary.Murphy, password: "HuAGTfIkGzt*Jkr7i4^AX5Z", display_name: Zachary Murphy }
+      - { username: Andrew.Lejeune, password: "HuAGTfIkGzt*Jkr7i4^AX5Z", display_name: Andrew Lejeune }
